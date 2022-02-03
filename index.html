@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+    <title>exp 1</title>
+    <style>
+            html, body {
+                height: 100%;
+            }
+        
+            body {
+                margin: 0;
+                display: flex;
+
+                /* This centers our sketch horizontally. */
+                justify-content: center;
+                overflow: hidden;
+            }
+
+            footer {
+                position: absolute;
+                bottom: 0;
+                margin-left: 30%;
+                height: 2.5rem;   
+            }
+
+            #grad1 {
+                background-color: #212227; /* For browsers that do not support gradients */
+                background-image: linear-gradient(to right, #6d8ea0 0%, #212227 35%); /* Standard syntax (must be last) */
+            }
+
+
+        
+    </style>
+    <script src="p5.min.js"></script>
+    <script src="p5.dom.min.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+</head>
+
+<body id = "grad1">
+    
+</body>
+<div id="p5_loading" class="loadingclass">
+    <img src = "load.gif">
+</div>
+
+</html>
+<script>
+    let myp5 = new p5(sketch, 'p5sketch');
+</script>
+<footer><a href = "https://www.kpopp.io/"></footer>
