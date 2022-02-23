@@ -32,7 +32,7 @@ let sketch = function (p) {
       cars[7] = p.loadImage("assets/car-8.png");
       for(var i = 0; i < cars.length; i++){
           //console.log(i);
-          currentAngle[i] = 34;
+          currentAngle[i] = 36;
           carPhase[i] = 0;
           translateAmtX[i] = p.width/2;
           translateAmtY[i] = p.height/2;
@@ -47,11 +47,11 @@ let sketch = function (p) {
        translateAmtY = 0;
 
        p.angleMode(p.DEGREES);
-       p.imageMode(p.CENTER);
+       //p.imageMode(p.CENTER);
     };
 
     p.draw = function () {
-       p.image(bg, bg.width/2, bg.height/2);
+       p.image(bg, 0, 0);
        p.drawCars();
        p.moveAngle();
        //lastMouseX = 0;
@@ -83,22 +83,42 @@ let sketch = function (p) {
     p.setupCars = function(){
         for(var i = 0; i < cars.length; i++){
             //carXPos[i] = startX + (i * 30);
-            carXPos[i] = 1600 + (i * 30);
+            carXPos[i] = 1000 + (i * 30);
             //console.log(carXPos[i]);
             //carYPos[i] = -115;
-            carYPos[i] = -100;
+            carYPos[i] = 500 + (i * 30);
         }
     }
 
     p.moveAngle = function(){
         for(var i = 0; i < carXPos.length; i++){
             //console.log("oi");
-            if(carXPos[i] < 800 && carPhase[i] == 0){
+            if(carXPos[i] < 910 && carPhase[i] == 0){
                 //console.log("hit point");
-                carXPos[i] += 50;
-                carYPos[i] += 50;
-                currentAngle[i] = 32;
+                carXPos[i] += 10;
+                carYPos[i] += 345;
+                currentAngle[i] = 15;
                 carPhase[i] = 1;
+            } else if(carXPos[i] < 850 && carPhase[i] == 1){
+                carYPos[i] += 15;
+                currentAngle[i] = 14;
+                carPhase[i] = 2;
+            } else if(carXPos[i] < 800 && carPhase[i] == 2){
+                carYPos[i] += 25;
+                currentAngle[i] = 12;
+                carPhase[i] = 3;
+            } else if(carXPos[i] < 750 && carPhase[i] == 3){
+                carYPos[i] += 25;
+                currentAngle[i] = 10;
+                carPhase[i] = 4;
+            } else if(carXPos[i] < 700 && carPhase[i] == 4){
+                carYPos[i] += 70;
+                currentAngle[i] = 5;
+                carPhase[i] = 5;
+            } else if (carXPos[i] < 650 && carPhase[i] == 5){
+                carYPos[i] += 70;
+                currentAngle[i] = 0;
+                carPhase[i] = 6;
             }
         }
         // if(carXPos[0] < p.width/2){
@@ -112,9 +132,12 @@ let sketch = function (p) {
 
         for(var i = 0; i < cars.length; i++){
             //p.translate(carXPos[i], carYPos[i]);
-            p.resetMatrix();
+            //p.resetMatrix();
+            p.push();
+            p.translate(carXPos[i], carYPos[i]);
             p.rotate(currentAngle[i]);
-            p.image(cars[i], carXPos[i], carYPos[i]);
+            p.image(cars[i], 0, 0);
+            p.pop();
         }
     }
 
